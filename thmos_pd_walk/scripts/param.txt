@@ -1,0 +1,32 @@
+#'foot_width' : 
+0.16
+#'ex_foot_width' : 
+-0.06
+#foot_height' : 
+0.04
+#'com_height' : 
+0.28
+#'com_x_offset' : 
+0
+#'com_y_offset' : 
+0.0
+#'trunk_height' : 
+0.29
+#'walking_period' : 
+0.4
+#'both_foot_support_time' : 
+0.01
+#'dt' : 
+0.01
+#'max_vx' : 
+0.5
+#'max_vy': 
+0.5
+#'max_vth' : 
+0.5
+#'k_x_offset':
+0
+#'k_y_offset':
+0
+#'trunk_pitch':
+0
