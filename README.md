@@ -1,7 +1,10 @@
 # thmos_walk_feedback
 walking control packet for humanoid robot with MPC and motion feedback
 
+## thmos_pd_walk_fb_pybullet is for pybullet simulation.
 
-- 核心反馈算法在thmos_pd_walk/walking_packet/thmos_walk_engine的walking.getNextPos()中
-- 要调整反馈系数（反馈强度），请调整thmos\_pd\_walk/walking\_packet/thmos\_walk\_engine的walking\.\_\_init\_\_()中的self.feedback_coef初始化参数。
-- 运行walking_pybullet_sample.py以启动仿真
+- major feedback algorithm is in thmos_pd_walk/walking_packet/thmos_walk_engine walking.getNextPos()
+- adjust thmos_pd_walk/walking_packet/thmos_walk_engine walking.__init__() self.feedback_coef to change the feedback intensity
+- run walking_pybullet_sample.py to start simulation
+
+## thmos_pd_walk_fb is for actual robot.

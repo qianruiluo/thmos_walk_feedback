@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="debug" default="false"/>
+    <arg name="dynup" default="true" doc="start dynup function"/>
+    <arg name="walking" default="true" doc="start the walking" />
+    <arg name="lowlevel" default="true" doc="start the lowlevel node" />
+    <arg name="sim" default="false"/>
+    <arg name="vision" default="false"/>
+    <arg name="decider" default="false"/>
+    <arg name="dxl_write_period" default="0.01"/>
+    <arg name="find_enemy" default="false"/>
+
+
+    <!-- run the animation server -->
+    <group if="$(arg dynup)">
+        <node name="thmos_animation_node" pkg="thmos_animation" type="animation_node" output="screen"/>
+    </group>
+
+    <!-- run the mos motion manager -->
+    <node name="motion_management" pkg="thmos_mmm" type="mos_motion_manager.py" output="screen"/>
+
+
+
+
+
+    <!-- run the lowlevel -->
+    <group if="$(arg lowlevel)">
+        <node name="lowlevel_node" pkg="thmos_lowlevel" type="wit_normal_ros.py" output="screen"/>
+        <include file="$(find dynamixel_workbench_controllers)/launch/mos_dynamixel_controllers.launch">
+            <arg name="dxl_write_period" value="$(arg dxl_write_period)"/>
+        </include>
+        <include file="$(find fdilink_ahrs)/launch/ahrs_data.launch">
+        </include>
+    </group>
+
+    <!-- run the walk engine -->
+    <!-- <node name="walk_node" pkg="thmos_pd_walk" type="zmp_walk_ros.py" output="screen"/> -->
+    <node name="keyin_node" pkg="thmos_bringup" type="bitbots_teleop_keyboard.py" output="screen"/>
+
+    <!-- run the vision -->
+    <group if="$(arg vision)">
+        <node name="thmos_vision" pkg="thmos_vision" type="vision.py" output="screen"/>
+            <param name="find_enemy" value="$(arg find_enemy)" /> 
+    </group>
+
+    <!-- run the decider -->
+    <group if="$(arg decider)">
+        <node name="thmos_decider" pkg="thmos_decider" type="decider.py" output="screen"/>
+    </group>
+</launch>
